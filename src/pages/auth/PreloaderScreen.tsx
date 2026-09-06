@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { C } from "@/theme";
+import { C, _lang } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
@@ -43,7 +43,8 @@ export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
           <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-16 h-16 object-contain drop-shadow-lg"
             style={{ filter: "drop-shadow(0 0 24px #DB8C0066)" }} />
           <div className="text-center">
-            <div className="text-3xl font-bold tracking-tight" style={{ color: "#fff", fontFamily: "'Inter', sans-serif" }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span>
+            <div className="text-3xl font-bold tracking-tight" style={{ color: "#fff", fontFamily: "'Inter', sans-serif" }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
             </div>
             <div className="text-xs tracking-widest uppercase mt-1" style={{ color: C.sidebarText, letterSpacing: "0.2em" }}>{t("Admin Console")}</div>
           </div>

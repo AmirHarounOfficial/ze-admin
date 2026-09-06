@@ -116,7 +116,8 @@ export function LoginPage({
           {/* Logo */}
           <div className="flex items-center gap-3">
             <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-9 h-9 object-contain" />
-            <span className="text-xl font-bold" style={{ color: "#fff" }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span>
+            <span className="text-xl font-bold" style={{ color: "#fff" }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
             </span>
           </div>
 
@@ -171,7 +172,8 @@ export function LoginPage({
           {/* Mobile logo */}
           <div className="flex lg:hidden items-center gap-2 mb-8">
             <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-8 h-8 object-contain" />
-            <span className="text-lg font-bold" style={{ color: C.textPrimary }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span>
+            <span className="text-lg font-bold" style={{ color: C.textPrimary }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
             </span>
           </div>
 

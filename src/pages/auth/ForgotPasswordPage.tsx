@@ -109,7 +109,9 @@ export function ForgotPasswordPage({ prefillEmail = "admin@zetime.io", onBack }:
         <div className="relative z-10 flex flex-col h-full p-10">
           <div className="flex items-center gap-3">
             <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-9 h-9 object-contain" />
-            <span className="text-xl font-bold" style={{ color: "#fff" }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span></span>
+            <span className="text-xl font-bold" style={{ color: "#fff" }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
+            </span>
           </div>
           <div className="mt-auto mb-auto space-y-6">
             <div className="text-3xl font-bold leading-snug" style={{ color: "#fff" }}>{t("Account")}<br /><span style={{ color: C.gold }}>{t("recovery.")}</span>

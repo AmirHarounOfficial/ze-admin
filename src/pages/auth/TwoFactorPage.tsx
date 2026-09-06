@@ -170,7 +170,9 @@ export function TwoFactorPage({
         <div className="relative z-10 flex flex-col h-full p-10">
           <div className="flex items-center gap-3">
             <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-9 h-9 object-contain" />
-            <span className="text-xl font-bold" style={{ color: "#fff" }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span></span>
+            <span className="text-xl font-bold" style={{ color: "#fff" }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
+            </span>
           </div>
           <div className="mt-auto mb-auto space-y-6">
             <div className="text-3xl font-bold leading-snug" style={{ color: "#fff" }}>{t("Secure by")}<br /><span style={{ color: C.gold }}>{t("design.")}</span>
@@ -179,9 +181,9 @@ export function TwoFactorPage({
             {/* How it works steps */}
             <div className="space-y-3 mt-4">
               {[
-                { n: "1", text: "Open Google Authenticator on your device." },
-                { n: "2", text: "Find the ZeTime Admin entry." },
-                { n: "3", text: "Enter the 6-digit code before it expires." },
+                { n: "1", text: t("Open Google Authenticator on your device.") },
+                { n: "2", text: t("Find the ZeTime Admin entry.") },
+                { n: "3", text: t("Enter the 6-digit code before it expires.") },
               ].map(s => (
                 <div key={s.n} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-xs font-bold"
@@ -205,7 +207,9 @@ export function TwoFactorPage({
           {/* Mobile logo */}
           <div className="flex lg:hidden items-center gap-2 mb-8">
             <ImageWithFallback src={zeTimeLogo} alt="ZeTime" className="w-8 h-8 object-contain" />
-            <span className="text-lg font-bold" style={{ color: C.textPrimary }}>{t("Ze")}<span style={{ color: C.gold }}>{t("Time")}</span></span>
+            <span className="text-lg font-bold" style={{ color: C.textPrimary }}>
+              {_lang === "ar" ? <>زي <span style={{ color: C.gold }}>تايم</span></> : <>Ze<span style={{ color: C.gold }}>Time</span></>}
+            </span>
           </div>
 
           {!showRecovery ? (
