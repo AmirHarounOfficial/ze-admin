@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 import { C } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
 
 export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
-  const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -20,16 +18,19 @@ export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
     const done = setTimeout(() => {
       setFading(true);
       setTimeout(() => {
-        if (onDone) onDone();
-        else navigate("/login", { replace: true });
+        if (onDone) {
+          onDone();
+        } else if (typeof window !== "undefined") {
+          window.location.replace("/login");
+        }
       }, 500);
     }, 2300);
     return () => { timers.forEach(clearTimeout); clearTimeout(done); };
-  }, [onDone, navigate]);
+  }, [onDone]);
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center transition-opacity duration-500"
-      style={{ background: C.sidebar, opacity: fading ? 0 : 1 }}>
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-opacity duration-500"
+      style={{ background: C.sidebar, opacity: fading ? 0 : 1, pointerEvents: fading ? "none" : "auto" }}>
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-5" style={{
         backgroundImage: `linear-gradient(${C.sidebarLabel} 1px, transparent 1px), linear-gradient(90deg, ${C.sidebarLabel} 1px, transparent 1px)`,
@@ -56,7 +57,7 @@ export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
           </div>
           <div className="flex justify-between mt-2">
             <span className="text-xs" style={{ color: C.sidebarText }}>
-              {progress < 40 ? "Initializing platform…" : progress < 80 ? "Loading modules…" : "Almost ready…"}
+              {progress < 40 ? t("Initializing platform…") : progress < 80 ? t("Loading modules…") : t("Almost ready…")}
             </span>
             <span className="text-xs font-mono" style={{ color: C.gold }}>{progress}%</span>
           </div>
@@ -70,3 +71,4 @@ export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
     </div>
   );
 }
+

@@ -996,8 +996,12 @@ export const AR: Record<string, string> = {
   "Daily Bookings": "حجوزات يومية",
   "Email is required.": "البريد الإلكتروني مطلوب.",
   "Password is required.": "كلمة المرور مطلوبة.",
+  "Initializing platform…": "تهيئة المنصة…",
+  "Loading modules…": "تحميل الوحدات…",
+  "Almost ready…": "جاهز تقريبًا…",
 };
 
 export function t(key: string): string {
   return _lang === "ar" ? (AR[key] ?? key) : key;
 }
+
