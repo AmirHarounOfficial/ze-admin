@@ -1,0 +1,359 @@
+You are a Senior Product Designer, UX Architect, Design System Architect, and Figma Expert.
+
+I have attached the complete ZeTime Admin Dashboard PRD, Information Architecture, Page Catalog, Permission Matrix, KPI Catalog, Workflow Documents, and all supporting documentation.
+
+Your task is to DESIGN the complete ZeTime Admin Dashboard in Figma Make based entirely on the provided documentation.
+
+Do NOT generate code.
+
+Do NOT generate placeholder wireframes.
+
+Create a production-ready enterprise SaaS dashboard design system and all dashboard screens.
+
+PROJECT CONTEXT
+
+ZeTime is a multi-service super app platform that includes:
+
+Home Services
+Car Services
+Restaurant Reservations
+Food Delivery
+Parcel Delivery
+Property Rentals
+Street Assistance
+Future expandable service modules
+
+The dashboard is the central control center for platform operations, finance, customer management, provider management, analytics, support, reporting, and system configuration.
+
+The dashboard must feel comparable to:
+
+Stripe
+Linear
+Notion
+Shopify Admin
+Uber Operations Dashboard
+HubSpot
+Datadog
+Vercel Dashboard
+
+The design must be modern, premium, scalable, and enterprise-grade.
+
+DESIGN PHILOSOPHY
+
+The dashboard should be:
+
+Clean
+Minimal
+Professional
+Data-focused
+Fast to scan
+Easy to learn
+Highly scalable
+Suitable for operators who spend 8+ hours per day using it
+
+Avoid:
+
+Excessive gradients
+Glassmorphism
+Heavy shadows
+Overly colorful interfaces
+Consumer-app styling
+
+Use a professional enterprise SaaS style.
+
+COLOR SYSTEM (VERY IMPORTANT)
+
+The dashboard uses a LIGHT THEME.
+
+THIS IS NOT A DARK MODE INTERFACE.
+
+Backgrounds should remain light.
+
+The PRIMARY BRAND COLOR is BLACK.
+
+However:
+
+ALL COLORS MUST BE CREATED USING FIGMA VARIABLES.
+
+Do not hardcode colors anywhere.
+
+Create a complete token-based design system.
+
+Examples:
+
+Color/Primary/50
+Color/Primary/100
+Color/Primary/200
+Color/Primary/300
+Color/Primary/400
+Color/Primary/500
+Color/Primary/600
+Color/Primary/700
+Color/Primary/800
+Color/Primary/900
+
+Initially:
+
+Primary 500 = Black
+
+Generate all supporting shades accordingly.
+
+The design must allow changing the entire dashboard branding by modifying only the Primary color variables.
+
+No component should depend on fixed colors.
+
+All components must consume design tokens.
+
+DESIGN TOKENS
+
+Create variables for:
+
+Brand Colors
+
+Primary
+Secondary
+Success
+Warning
+Danger
+Info
+
+Neutral Scale
+
+Neutral 0
+Neutral 50
+Neutral 100
+Neutral 200
+Neutral 300
+Neutral 400
+Neutral 500
+Neutral 600
+Neutral 700
+Neutral 800
+Neutral 900
+
+Typography
+
+Font Family
+Font Sizes
+Font Weights
+Line Heights
+
+Radius
+
+Radius XS
+Radius SM
+Radius MD
+Radius LG
+Radius XL
+
+Shadows
+
+Shadow XS
+Shadow SM
+Shadow MD
+Shadow LG
+
+Spacing
+
+4
+8
+12
+16
+20
+24
+32
+40
+48
+64
+
+Everything must be tokenized.
+
+DESIGN SYSTEM
+
+Create reusable components for:
+
+Buttons
+Primary
+Secondary
+Ghost
+Outline
+Danger
+Success
+
+States:
+
+Default
+Hover
+Focus
+Active
+Disabled
+Loading
+Inputs
+Text
+Search
+Password
+Number
+Phone
+Email
+Date
+Date Range
+
+States:
+
+Default
+Focus
+Error
+Disabled
+Success
+Tables
+
+Enterprise-grade data tables with:
+
+Sorting
+Filtering
+Bulk Selection
+Column Visibility
+Pagination
+Row Actions
+Cards
+KPI Cards
+Analytics Cards
+Financial Cards
+Status Cards
+Navigation
+Sidebar
+Top Bar
+Breadcrumbs
+Tabs
+Section Navigation
+Status Components
+Badges
+Tags
+Labels
+Chips
+Feedback Components
+Toasts
+Alerts
+Notifications
+Empty States
+Error States
+Success States
+LAYOUT SYSTEM
+
+Desktop-first.
+
+Use a professional grid system.
+
+Recommended widths:
+
+1440px+
+1600px+
+1920px+
+
+Support large operational screens.
+
+The dashboard should look excellent on wide monitors.
+
+SIDEBAR
+
+Design a modern enterprise sidebar.
+
+Features:
+
+Expandable
+Collapsible
+Nested navigation
+Active indicators
+Search within navigation
+Module grouping
+
+The sidebar should feel premium and organized.
+
+DASHBOARD HOME
+
+Create a flagship dashboard overview page.
+
+Include:
+
+Executive KPI Cards
+Revenue Analytics
+Live Activity Feed
+Provider Activity
+Customer Activity
+Orders Overview
+Bookings Overview
+Geographic Heatmap
+Recent Events
+System Health
+
+The dashboard should immediately communicate the health of the business.
+
+MODULE SCREENS
+
+Design every screen described in the attached documentation.
+
+Do not skip screens.
+
+For each screen provide:
+
+Full page layout
+Tables
+Filters
+Actions
+Drawers
+Modals
+Detail Views
+Create/Edit Flows
+DATA VISUALIZATION
+
+Create a complete chart system.
+
+Include:
+
+Line Charts
+Bar Charts
+Area Charts
+Donut Charts
+Heatmaps
+Geographic Maps
+KPI Trends
+
+Charts should remain readable using the black-primary design language.
+
+RESPONSIVE BEHAVIOR
+
+Design:
+
+Desktop
+Laptop
+Tablet
+
+Focus primarily on desktop operations.
+
+ACCESSIBILITY
+
+Follow WCAG AA standards.
+
+Maintain excellent contrast ratios.
+
+Ensure readability for long operational sessions.
+
+FUTURE PROOFING
+
+The design system must support:
+
+Additional service modules
+Additional countries
+Additional business units
+Multi-brand deployments
+White-label versions
+
+without redesigning components.
+
+DELIVERABLE
+
+Create a complete Figma design system and high-fidelity dashboard screens based on the attached ZeTime documentation.
+
+The result should feel like a premium enterprise SaaS platform that could compete visually and functionally with Stripe, Shopify Admin, and Uber Operations tools.
+
+Prioritize clarity, scalability, usability, consistency, and maintainability over visual effects.

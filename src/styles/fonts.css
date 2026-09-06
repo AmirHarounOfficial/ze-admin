@@ -1,0 +1,84 @@
+/* ─── ARABIC FONT: Alexandria ─────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/ar/Alexandria-VariableFont_wght.ttf') format('truetype-variations'),
+       url('/fonts/ar/static/Alexandria-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/ar/static/Alexandria-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/ar/static/Alexandria-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/ar/static/Alexandria-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── ENGLISH FONT: Satoshi ────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/en/WEB/fonts/Satoshi-Variable.woff2') format('woff2'),
+       url('/fonts/en/WEB/fonts/Satoshi-Variable.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/en/WEB/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('/fonts/en/WEB/fonts/Satoshi-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/en/WEB/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('/fonts/en/WEB/fonts/Satoshi-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/en/WEB/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('/fonts/en/WEB/fonts/Satoshi-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── SYSTEM FONT STACKS & DIRECTION SWITCHING ──────────────────────────────── */
+:root {
+  --font-en: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ar: 'Alexandria', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-en);
+}
+
+html[dir="rtl"], [dir="rtl"] {
+  font-family: var(--font-ar);
+}
