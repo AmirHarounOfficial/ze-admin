@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import {
   Wrench, Pizza, Home, Car, Truck, Package, UtensilsCrossed, Eye, AlertCircle, RefreshCw, Shield
 } from "lucide-react";
@@ -7,7 +8,14 @@ import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
 
-export function LoginPage({ onSuccess, onForgot }: { onSuccess: (email: string) => void; onForgot: (email: string) => void }) {
+export function LoginPage({
+  onSuccess,
+  onForgot,
+}: {
+  onSuccess?: (email: string) => void;
+  onForgot?: (email: string) => void;
+} = {}) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("admin@zetime.io");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
@@ -25,8 +33,16 @@ export function LoginPage({ onSuccess, onForgot }: { onSuccess: (email: string) 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      onSuccess(email);
-    }, 1200);
+      try {
+        localStorage.setItem("zetime_auth", "true");
+        localStorage.setItem("zetime_user", email);
+      } catch {}
+      if (onSuccess) {
+        onSuccess(email);
+      } else {
+        navigate("/overview", { replace: true });
+      }
+    }, 1000);
   }
 
   const inputCls = "w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all";
@@ -136,7 +152,10 @@ export function LoginPage({ onSuccess, onForgot }: { onSuccess: (email: string) 
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-xs font-semibold" style={{ color: C.textSecondary }}>{t("Password")}</label>
                 <button type="button" className="text-xs font-medium"
-                  style={{ color: C.gold }} onClick={() => onForgot(email)}>{t("Forgot password?")}</button>
+                  style={{ color: C.gold }} onClick={() => {
+                    if (onForgot) onForgot(email);
+                    else navigate("/forgot-password");
+                  }}>{t("Forgot password?")}</button>
               </div>
               <div className="relative">
                 <input

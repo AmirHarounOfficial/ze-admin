@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 import { Shield, AlertCircle, RefreshCw, CheckCircle2, ChevronLeft } from "lucide-react";
 import { C } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
 
-export function TwoFactorPage({ email, onSuccess, onBack }: { email: string; onSuccess: () => void; onBack: () => void }) {
+export function TwoFactorPage({
+  email: initialEmail,
+  onSuccess,
+  onBack,
+}: {
+  email?: string;
+  onSuccess?: () => void;
+  onBack?: () => void;
+} = {}) {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const email = initialEmail || searchParams.get("email") || "admin@zetime.io";
   const [digits, setDigits] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -67,14 +79,28 @@ export function TwoFactorPage({ email, onSuccess, onBack }: { email: string; onS
     if (totp <= 2) { setError("Code is about to expire — wait for the next code."); return; }
     setLoading(true);
     setError("");
-    setTimeout(() => { setLoading(false); onSuccess(); }, 1100);
+    setTimeout(() => {
+      setLoading(false);
+      try {
+        localStorage.setItem("zetime_auth", "true");
+      } catch {}
+      if (onSuccess) onSuccess();
+      else navigate("/overview", { replace: true });
+    }, 1100);
   }
 
   function handleRecoveryVerify() {
     if (recoveryCode.trim().length < 8) { setError("Enter a valid recovery code."); return; }
     setLoading(true);
     setError("");
-    setTimeout(() => { setLoading(false); onSuccess(); }, 1100);
+    setTimeout(() => {
+      setLoading(false);
+      try {
+        localStorage.setItem("zetime_auth", "true");
+      } catch {}
+      if (onSuccess) onSuccess();
+      else navigate("/overview", { replace: true });
+    }, 1100);
   }
 
   const allFilled = digits.every(d => d !== "");
@@ -274,7 +300,7 @@ export function TwoFactorPage({ email, onSuccess, onBack }: { email: string; onS
 
           {/* Back to login */}
           <div className="text-center">
-            <button onClick={onBack} className="flex items-center gap-1.5 text-xs mx-auto" style={{ color: C.textMuted }}>
+            <button onClick={() => { if (onBack) onBack(); else navigate("/login"); }} className="flex items-center gap-1.5 text-xs mx-auto" style={{ color: C.textMuted }}>
               <ChevronLeft size={14} />{t("Back to sign in")}</button>
           </div>
 

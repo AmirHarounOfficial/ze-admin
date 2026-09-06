@@ -56,6 +56,10 @@ export function doLogout() {
   _dark = false;
   _lang = "en";
   applyTheme();
+  try {
+    localStorage.removeItem("zetime_auth");
+    localStorage.removeItem("zetime_user");
+  } catch {}
   _onLogout?.();
 }
 

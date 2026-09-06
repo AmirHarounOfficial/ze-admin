@@ -78,7 +78,7 @@ export function UserAvatarButton() {
           {/* Sign out */}
           <div className="border-t py-1.5" style={{ borderColor: C.border }}>
             <button
-              onClick={() => { setOpen(false); doLogout(); }}
+              onClick={() => { setOpen(false); doLogout(); navigate("/login", { replace: true }); }}
               className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors text-start"
               style={{ color: C.red }}
               onMouseEnter={e => (e.currentTarget.style.background = C.redLight)}

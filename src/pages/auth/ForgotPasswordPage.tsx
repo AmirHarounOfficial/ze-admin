@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import {
   KeyRound, Shield, AlertCircle, RefreshCw, Send, Info, CheckCircle2, ChevronLeft
 } from "lucide-react";
@@ -7,7 +8,8 @@ import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
 
-export function ForgotPasswordPage({ prefillEmail, onBack }: { prefillEmail: string; onBack: () => void }) {
+export function ForgotPasswordPage({ prefillEmail = "admin@zetime.io", onBack }: { prefillEmail?: string; onBack?: () => void } = {}) {
+  const navigate = useNavigate();
   const [stage, setStage] = useState<"request" | "sent">("request");
   const [email, setEmail] = useState(prefillEmail);
   const [loading, setLoading] = useState(false);
@@ -93,7 +95,7 @@ export function ForgotPasswordPage({ prefillEmail, onBack }: { prefillEmail: str
             <>
               {/* Header */}
               <div className="mb-7">
-                <button onClick={onBack} className="flex items-center gap-1 text-xs mb-6" style={{ color: C.textMuted }}>
+                <button onClick={() => { if (onBack) onBack(); else navigate("/login"); }} className="flex items-center gap-1 text-xs mb-6" style={{ color: C.textMuted }}>
                   <ChevronLeft size={14} />{t("Back to sign in")}</button>
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
                   style={{ background: C.goldLight, color: C.gold }}>
@@ -207,7 +209,7 @@ export function ForgotPasswordPage({ prefillEmail, onBack }: { prefillEmail: str
                   )}
                 </div>
 
-                <button onClick={onBack}
+                <button onClick={() => { if (onBack) onBack(); else navigate("/login"); }}
                   className="w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all"
                   style={{ background: C.sidebar, color: "#fff", boxShadow: `0 4px 14px ${C.sidebar}44` }}>
                   <ChevronLeft size={14} />{t("Back to Sign In")}</button>

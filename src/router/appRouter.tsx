@@ -101,17 +101,33 @@ import { ERPAssetsPage } from "@/pages/erp/ERPAssetsPage";
 import { MyProfilePage } from "@/pages/account/MyProfilePage";
 import { AccountSecurityPage } from "@/pages/account/AccountSecurityPage";
 
+function ProtectedLayout() {
+  const isAuth = typeof window !== "undefined" && localStorage.getItem("zetime_auth") === "true";
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
+  return <RootLayout />;
+}
+
+function PublicAuthRoute({ children }: { children: React.ReactNode }) {
+  const isAuth = typeof window !== "undefined" && localStorage.getItem("zetime_auth") === "true";
+  if (isAuth) {
+    return <Navigate to="/overview" replace />;
+  }
+  return <>{children}</>;
+}
+
 export const router = createBrowserRouter([
   // Full-page screens without sidebar/topbar
   { path: "/loader", element: <PreloaderScreen /> },
-  { path: "/login", element: <LoginPage /> },
+  { path: "/login", element: <PublicAuthRoute><LoginPage /></PublicAuthRoute> },
   { path: "/forgot-password", element: <ForgotPasswordPage /> },
   { path: "/2fa", element: <TwoFactorPage /> },
 
-  // Admin shell with Sidebar & Topbar
+  // Admin shell with Sidebar & Topbar (protected)
   {
     path: "/",
-    element: <RootLayout />,
+    element: <ProtectedLayout />,
     children: [
       { index: true, element: <OverviewPage /> },
       { path: "overview", element: <OverviewPage /> },

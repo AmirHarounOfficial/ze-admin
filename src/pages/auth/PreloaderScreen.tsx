@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { C } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
 
-export function PreloaderScreen({ onDone }: { onDone: () => void }) {
+export function PreloaderScreen({ onDone }: { onDone?: () => void } = {}) {
+  const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -17,10 +19,13 @@ export function PreloaderScreen({ onDone }: { onDone: () => void }) {
     );
     const done = setTimeout(() => {
       setFading(true);
-      setTimeout(onDone, 500);
+      setTimeout(() => {
+        if (onDone) onDone();
+        else navigate("/login", { replace: true });
+      }, 500);
     }, 2300);
     return () => { timers.forEach(clearTimeout); clearTimeout(done); };
-  }, [onDone]);
+  }, [onDone, navigate]);
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center transition-opacity duration-500"
