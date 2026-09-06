@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { Shield, AlertCircle, RefreshCw, CheckCircle2, ChevronLeft } from "lucide-react";
-import { C } from "@/theme";
+import { Shield, AlertCircle, RefreshCw, CheckCircle2, ChevronLeft, Globe } from "lucide-react";
+import { C, _lang, setLang, applyTheme } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
@@ -17,11 +17,19 @@ export function TwoFactorPage({
 } = {}) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const [lang, setLangState] = useState<"en" | "ar">(_lang);
   const email = initialEmail || searchParams.get("email") || "admin@zetime.io";
   const [digits, setDigits] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [mounted, setMounted] = useState(false);
+
+  function handleSwitchLang(newLang: "en" | "ar") {
+    if (lang === newLang) return;
+    setLang(newLang);
+    applyTheme();
+    setLangState(newLang);
+  }
   // TOTP: 30-second window, show progress
   const [totp, setTotp] = useState(() => {
     const now = Math.floor(Date.now() / 1000);
@@ -111,7 +119,47 @@ export function TwoFactorPage({
   const dash = (totpPct / 100) * circ;
 
   return (
-    <div className="min-h-screen flex" style={{ background: C.bg }}>
+    <div
+      key={lang}
+      className="min-h-screen flex relative"
+      style={{
+        background: C.bg,
+        direction: lang === "ar" ? "rtl" : "ltr",
+        fontFamily: lang === "ar" ? "'Alexandria', 'Inter', sans-serif" : "'Satoshi', 'Inter', sans-serif",
+      }}
+    >
+      {/* Top language switch */}
+      <div className="absolute top-5 end-6 z-20 flex items-center gap-2">
+        <div
+          className="flex items-center p-1 rounded-xl border shadow-sm"
+          style={{ borderColor: C.border, background: C.card }}
+        >
+          <button
+            type="button"
+            onClick={() => handleSwitchLang("en")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              background: lang === "en" ? C.sidebar : "transparent",
+              color: lang === "en" ? "#fff" : C.textSecondary,
+            }}
+          >
+            <span>English</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSwitchLang("ar")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              background: lang === "ar" ? C.gold : "transparent",
+              color: lang === "ar" ? "#fff" : C.textSecondary,
+            }}
+          >
+            <Globe size={13} />
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
+
       {/* Narrow brand strip — mirrors login */}
       <div className="hidden lg:flex flex-col w-[480px] shrink-0 relative overflow-hidden"
         style={{ background: C.sidebar }}>

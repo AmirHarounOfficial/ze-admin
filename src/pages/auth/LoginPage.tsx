@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {
-  Wrench, Pizza, Home, Car, Truck, Package, UtensilsCrossed, Eye, AlertCircle, RefreshCw, Shield
+  Wrench, Pizza, Home, Car, Truck, Package, UtensilsCrossed, Eye, AlertCircle, RefreshCw, Shield, Globe
 } from "lucide-react";
-import { C } from "@/theme";
+import { C, _lang, setLang, applyTheme } from "@/theme";
 import { t } from "@/i18n";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import zeTimeLogo from "@/imports/ZETIME_Logo_Symbol.png";
@@ -16,6 +16,7 @@ export function LoginPage({
   onForgot?: (email: string) => void;
 } = {}) {
   const navigate = useNavigate();
+  const [lang, setLangState] = useState<"en" | "ar">(_lang);
   const [email, setEmail] = useState("admin@zetime.io");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
@@ -24,6 +25,13 @@ export function LoginPage({
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setTimeout(() => setMounted(true), 50); }, []);
+
+  function handleSwitchLang(newLang: "en" | "ar") {
+    if (lang === newLang) return;
+    setLang(newLang);
+    applyTheme();
+    setLangState(newLang);
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,7 +64,47 @@ export function LoginPage({
   const [emailFocused, setEmailFocus] = useState(false);
 
   return (
-    <div className="min-h-screen flex" style={{ background: C.bg }}>
+    <div
+      key={lang}
+      className="min-h-screen flex relative"
+      style={{
+        background: C.bg,
+        direction: lang === "ar" ? "rtl" : "ltr",
+        fontFamily: lang === "ar" ? "'Alexandria', 'Inter', sans-serif" : "'Satoshi', 'Inter', sans-serif",
+      }}
+    >
+      {/* Top language switch */}
+      <div className="absolute top-5 end-6 z-20 flex items-center gap-2">
+        <div
+          className="flex items-center p-1 rounded-xl border shadow-sm"
+          style={{ borderColor: C.border, background: C.card }}
+        >
+          <button
+            type="button"
+            onClick={() => handleSwitchLang("en")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              background: lang === "en" ? C.sidebar : "transparent",
+              color: lang === "en" ? "#fff" : C.textSecondary,
+            }}
+          >
+            <span>English</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSwitchLang("ar")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            style={{
+              background: lang === "ar" ? C.gold : "transparent",
+              color: lang === "ar" ? "#fff" : C.textSecondary,
+            }}
+          >
+            <Globe size={13} />
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
+
       {/* Left brand panel */}
       <div className="hidden lg:flex flex-col w-[480px] shrink-0 relative overflow-hidden"
         style={{ background: C.sidebar }}>
