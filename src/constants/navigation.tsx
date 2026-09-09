@@ -3,12 +3,12 @@ import {
   LayoutDashboard, Map, Navigation, Users, Building2, ShieldCheck, UserCog, HardHat, Bike,
   Home, Wrench, Car, UtensilsCrossed, Pizza, Package, Truck, CreditCard, Wallet, Calculator,
   Megaphone, FileBarChart2, Ticket, MessageSquare, Star, FileText, Globe, User, Calendar,
-  Banknote, Layers, Database, Settings, KeyRound, Plug, ScrollText, Users2
+  Banknote, Layers, Database, Settings, KeyRound, Plug, ScrollText, Users2, ShieldAlert
 } from "lucide-react";
 import { Page, NavItem } from "@/types";
 
 export const PAGE_TITLES: Record<Page, string> = {
-  overview: "Live Executive Board", map: "Operations Map", "live-map": "Live Operations Map",
+  overview: "Live Executive Board", map: "Operations Map", "live-map": "Live Operations Map", incidents: "Incident War Room",
   customers: "Customers Register",
   "providers-queue": "Provider Verification Queue", "providers-registry": "Merchant Registry",
   handyman: "Handyman Staff List", drivers: "Delivery Drivers", captains: "Road Captains",
@@ -35,6 +35,7 @@ export const PAGE_URLS: Record<Page, string> = {
   overview:             "/overview",
   map:                  "/operations/map",
   "live-map":           "/operations/live-map",
+  incidents:            "/incidents",
   customers:            "/customers",
   "providers-queue":    "/providers/queue",
   "providers-registry": "/providers/registry",
@@ -78,6 +79,30 @@ export const URL_TO_PAGE = Object.fromEntries(
   Object.entries(PAGE_URLS).map(([page, url]) => [url, page as Page])
 ) as Record<string, Page>;
 
+export function getPageFromPathname(pathname: string): Page {
+  if (URL_TO_PAGE[pathname]) return URL_TO_PAGE[pathname];
+  if (pathname.startsWith("/customers/")) return "customers";
+  if (pathname.startsWith("/providers/queue/")) return "providers-queue";
+  if (pathname.startsWith("/providers/registry/")) return "providers-registry";
+  if (pathname.startsWith("/staff/handyman/")) return "handyman";
+  if (pathname.startsWith("/staff/drivers/")) return "drivers";
+  if (pathname.startsWith("/staff/captains/")) return "captains";
+  if (pathname.startsWith("/operations/property/listings/")) return "property";
+  if (pathname.startsWith("/operations/restaurant/providers/")) return "restaurant";
+  if (pathname.startsWith("/operations/food-delivery/orders/")) return "food-delivery";
+  if (pathname.startsWith("/operations/food-delivery/drivers/")) return "drivers";
+  if (pathname.startsWith("/operations/roadside/captains/")) return "captains";
+  if (pathname.startsWith("/operations/home-services/bookings/")) return "home-services";
+  if (pathname.startsWith("/operations/car-services/jobs/")) return "car-services";
+  if (pathname.startsWith("/operations/parcel-delivery/parcels/")) return "parcel-delivery";
+  if (pathname.startsWith("/financial/transactions/")) return "transactions";
+  if (pathname.startsWith("/financial/marketers/")) return "marketers";
+  if (pathname.startsWith("/support/tickets/")) return "support";
+  if (pathname.startsWith("/support/banners/")) return "banners";
+  if (pathname.startsWith("/hrm/employees/")) return "hrm-employees";
+  return URL_TO_PAGE[pathname] ?? "overview";
+}
+
 export const leaveRequestsBadge = 2;
 
 export const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
@@ -87,6 +112,7 @@ export const NAV_GROUPS: { group: string; items: NavItem[] }[] = [
       { label: "Live Executive Board", icon: <LayoutDashboard size={15} />, page: "overview" },
       { label: "Operations Map",        icon: <Map size={15} />,             page: "map" },
       { label: "Live Map",              icon: <Navigation size={15} />,      page: "live-map" },
+      { label: "Incident War Room",     icon: <ShieldAlert size={15} />,     page: "incidents", badge: 3 },
     ],
   },
   {

@@ -1,7 +1,7 @@
 import React from "react";
 
 export type Page =
-  | "overview" | "map" | "live-map" | "customers" | "providers-queue" | "providers-registry"
+  | "overview" | "map" | "live-map" | "incidents" | "customers" | "providers-queue" | "providers-registry"
   | "handyman" | "drivers" | "captains" | "property" | "restaurant" | "food-delivery" | "roadside"
   | "home-services" | "car-services" | "parcel-delivery"
   | "transactions" | "payouts" | "commissions" | "marketers" | "reports" | "support" | "chat"

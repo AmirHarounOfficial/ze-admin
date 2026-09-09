@@ -5,7 +5,9 @@ import { C } from "@/theme";
 import { t } from "@/i18n";
 import { NOTIF_DATA } from "@/mock/mockData";
 import { Page } from "@/types";
-import { PAGE_TITLES, URL_TO_PAGE } from "@/constants/navigation";
+import { PAGE_TITLES, getPageFromPathname } from "@/constants/navigation";
+import { getSubDashboardForPath } from "@/constants/subDashboards";
+import { DashboardSelector } from "./DashboardSelector";
 import { NotificationsDropdown } from "./NotificationsDropdown";
 import { UserAvatarButton } from "./UserAvatarButton";
 
@@ -13,19 +15,36 @@ export function Topbar({ onToggle, onToggleDark, onToggleLang, dark, lang }: {
   onToggle: () => void; onToggleDark: () => void; onToggleLang: () => void; dark: boolean; lang: string
 }) {
   const { pathname } = useLocation();
-  const page: Page = URL_TO_PAGE[pathname] ?? "overview";
+  const page: Page = getPageFromPathname(pathname);
+  const subDashboard = getSubDashboardForPath(pathname);
   const [showNotifs, setShowNotifs] = useState(false);
   const unread = NOTIF_DATA.filter(n => n.unread).length;
   return (
-    <div className="flex items-center gap-4 px-5 h-14 border-b shrink-0" style={{ background: C.card, borderColor: C.border }}>
+    <div className="flex items-center gap-3 px-4 sm:px-5 h-14 border-b shrink-0" style={{ background: C.card, borderColor: C.border }}>
       <button onClick={onToggle} className="rounded-lg p-1.5 transition-colors" style={{ background: "transparent" }}
         onMouseEnter={e => (e.currentTarget.style.background = C.border)}
         onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
         <Menu size={16} color={C.textSecondary} />
       </button>
-      <div className="flex items-center gap-1.5 text-xs" style={{ color: C.textMuted }}>
-        <span>{t("ZeTime")}</span><ChevronRight size={12} className="rtl:rotate-180" />
-        <span className="font-medium" style={{ color: C.textPrimary }}>{t(PAGE_TITLES[page] ?? "")}</span>
+
+      {/* Sub-Dashboard Switcher */}
+      <DashboardSelector />
+
+      {/* Breadcrumbs */}
+      <div className="hidden md:flex items-center gap-1.5 text-xs ms-1 truncate" style={{ color: C.textMuted }}>
+        <span className="opacity-70">{t("ZeTime")}</span>
+        <ChevronRight size={12} className="rtl:rotate-180 opacity-50 shrink-0" />
+        <span className="font-medium truncate" style={{ color: subDashboard.color }}>
+          {t(subDashboard.title)}
+        </span>
+        {PAGE_TITLES[page] && PAGE_TITLES[page] !== subDashboard.title && (
+          <>
+            <ChevronRight size={12} className="rtl:rotate-180 opacity-50 shrink-0" />
+            <span className="font-semibold truncate" style={{ color: C.textPrimary }}>
+              {t(PAGE_TITLES[page])}
+            </span>
+          </>
+        )}
       </div>
       <div className="ms-auto flex items-center gap-2">
         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs" style={{ borderColor: C.border, color: C.textSecondary, background: C.card }}>

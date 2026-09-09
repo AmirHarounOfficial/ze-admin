@@ -12,6 +12,7 @@ import { TwoFactorPage } from "@/pages/auth/TwoFactorPage";
 import { OverviewPage } from "@/pages/overview/OverviewPage";
 import { OperationsMapPage } from "@/pages/overview/OperationsMapPage";
 import { LiveMapPage } from "@/pages/overview/LiveMapPage";
+import { IncidentWarRoomPage } from "@/pages/overview/IncidentWarRoomPage";
 
 // Customers
 import { CustomersPage } from "@/pages/customers/CustomersPage";
@@ -131,6 +132,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <OverviewPage /> },
       { path: "overview", element: <OverviewPage /> },
+      { path: "incidents", element: <IncidentWarRoomPage /> },
       { path: "operations/map", element: <OperationsMapPage /> },
       { path: "operations/live-map", element: <LiveMapPage /> },
 

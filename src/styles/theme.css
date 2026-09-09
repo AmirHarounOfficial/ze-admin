@@ -179,3 +179,20 @@
     line-height: 1.5;
   }
 }
+
+/* Google Maps Development Watermark & Overlay Cleaner */
+.gm-style-cc,
+.gm-err-container,
+.gm-err-content,
+.dismissButton,
+a[href*="google.com/maps"] + div,
+div[style*="z-index: 1000001"],
+div[style*="z-index: 1000002"] {
+  display: none !important;
+}
+
+/* Prevent tile dimming */
+.gm-style > div:first-child > div:nth-child(2) {
+  opacity: 1 !important;
+}
+
