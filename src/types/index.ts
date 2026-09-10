@@ -2,12 +2,17 @@ import React from "react";
 
 export type Page =
   | "overview" | "map" | "live-map" | "incidents" | "customers" | "providers-queue" | "providers-registry"
+  | "providers-workforce" | "providers-compliance"
   | "handyman" | "drivers" | "captains" | "property" | "restaurant" | "food-delivery" | "roadside"
   | "home-services" | "car-services" | "parcel-delivery"
-  | "transactions" | "payouts" | "commissions" | "marketers" | "reports" | "support" | "chat"
-  | "reviews" | "banners" | "translations" | "settings" | "permissions" | "audit" | "integrations"
+  | "bookings-command" | "bookings-quality"
+  | "transactions" | "payouts" | "commissions" | "marketers" | "reports"
+  | "financial-treasury" | "financial-affiliates"
+  | "support" | "chat" | "support-command" | "support-feedback"
+  | "reviews" | "banners" | "translations" | "settings" | "permissions" | "audit" | "integrations" | "system-security"
   | "hrm-employees" | "hrm-departments" | "hrm-leaves" | "hrm-payroll"
-  | "erp-dashboard" | "erp-budget" | "erp-vendors" | "erp-assets"
+  | "hrm-performance" | "hrm-attendance"
+  | "erp-dashboard" | "erp-budget" | "erp-vendors" | "erp-assets" | "erp-procurement" | "erp-lifecycle"
   | "my-profile" | "account-security";
 
 export type NavItem = {

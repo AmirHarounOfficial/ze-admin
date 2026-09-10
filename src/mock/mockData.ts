@@ -59,11 +59,11 @@ export const transactionData = [
 ];
 
 export const merchantData = [
-  { id: "M-301", name: "CleanPro EG",       modules: ["Home Services"],          rating: 4.8, status: "active",   joined: "2023-11" },
-  { id: "M-302", name: "Burger Hub",        modules: ["Food Delivery"],          rating: 4.6, status: "active",   joined: "2023-09" },
-  { id: "M-303", name: "PropEgypt Agency",  modules: ["Property"],               rating: 4.9, status: "active",   joined: "2024-01" },
-  { id: "M-304", name: "QuickTow Services", modules: ["Roadside Assistance"],   rating: 4.3, status: "suspended",joined: "2023-08" },
-  { id: "M-305", name: "AutoSpark Garage",  modules: ["Car Services"],           rating: 4.7, status: "active",   joined: "2024-02" },
+  { id: "M-301", name: "CleanPro EG",       category: "Home Services",     modules: ["Home Services"],          points: 1240, rating: 4.8, status: "active",   joined: "2023-11" },
+  { id: "M-302", name: "Burger Hub",        category: "Food & Dining",     modules: ["Food Delivery"],          points: 3820, rating: 4.6, status: "active",   joined: "2023-09" },
+  { id: "M-303", name: "PropEgypt Agency",  category: "Property Rentals",  modules: ["Property"],               points: 850,  rating: 4.9, status: "active",   joined: "2024-01" },
+  { id: "M-304", name: "QuickTow Services", category: "Roadside Assist",   modules: ["Roadside Assistance"],   points: 410,  rating: 4.3, status: "suspended",joined: "2023-08" },
+  { id: "M-305", name: "AutoSpark Garage",  category: "Car Maintenance",   modules: ["Car Services"],           points: 2190, rating: 4.7, status: "active",   joined: "2024-02" },
 ];
 
 export const mapZones = [

@@ -23,6 +23,8 @@ import { ProviderQueuePage } from "@/pages/providers/ProviderQueuePage";
 import { MerchantRegistryPage } from "@/pages/providers/MerchantRegistryPage";
 import { ProviderDetailPage } from "@/pages/providers/ProviderDetailPage";
 import { ProviderQueueDetailPage } from "@/pages/providers/ProviderQueueDetailPage";
+import { WorkforceCommandPage } from "@/pages/providers/WorkforceCommandPage";
+import { ComplianceScoreboardPage } from "@/pages/providers/ComplianceScoreboardPage";
 
 // Handyman
 import { HandymanPage } from "@/pages/handyman/HandymanPage";
@@ -59,6 +61,10 @@ import { CarJobDetailPage } from "@/pages/car-services/CarJobDetailPage";
 import { ParcelDeliveryPage } from "@/pages/parcel-delivery/ParcelDeliveryPage";
 import { ParcelTrackPage } from "@/pages/parcel-delivery/ParcelTrackPage";
 
+// Bookings Hub
+import { BookingsCommandCenterPage } from "@/pages/bookings/BookingsCommandCenterPage";
+import { ServiceQualityPage } from "@/pages/bookings/ServiceQualityPage";
+
 // Finance
 import { TransactionsPage } from "@/pages/finance/TransactionsPage";
 import { TransactionDetailPage } from "@/pages/finance/TransactionDetailPage";
@@ -67,11 +73,15 @@ import { PayoutsPage } from "@/pages/finance/PayoutsPage";
 import { ReportsPage } from "@/pages/finance/ReportsPage";
 import { MarketersPage } from "@/pages/finance/MarketersPage";
 import { MarketerDetailPage } from "@/pages/finance/MarketerDetailPage";
+import { TreasuryCommandPage } from "@/pages/finance/TreasuryCommandPage";
+import { AffiliateEnginePage } from "@/pages/finance/AffiliateEnginePage";
 
 // Support
 import { SupportPage } from "@/pages/support/SupportPage";
 import { TicketDetailPage } from "@/pages/support/TicketDetailPage";
 import { ChatPage } from "@/pages/support/ChatPage";
+import { SupportCommandPage } from "@/pages/support/SupportCommandPage";
+import { FeedbackScoreboardPage } from "@/pages/support/FeedbackScoreboardPage";
 
 // Content
 import { ReviewsPage } from "@/pages/content/ReviewsPage";
@@ -84,6 +94,7 @@ import { SettingsPage } from "@/pages/system/SettingsPage";
 import { PermissionsPage } from "@/pages/system/PermissionsPage";
 import { AuditPage } from "@/pages/system/AuditPage";
 import { IntegrationsPage } from "@/pages/system/IntegrationsPage";
+import { SecurityCommandPage } from "@/pages/system/SecurityCommandPage";
 
 // HRM
 import { HRMEmployeesPage } from "@/pages/hrm/HRMEmployeesPage";
@@ -91,12 +102,16 @@ import { HRMEmployeeDetailPage } from "@/pages/hrm/HRMEmployeeDetailPage";
 import { HRMDepartmentsPage } from "@/pages/hrm/HRMDepartmentsPage";
 import { HRMLeavesPage } from "@/pages/hrm/HRMLeavesPage";
 import { HRMPayrollPage } from "@/pages/hrm/HRMPayrollPage";
+import { HRMPerformancePage } from "@/pages/hrm/HRMPerformancePage";
+import { HRMAttendancePage } from "@/pages/hrm/HRMAttendancePage";
 
 // ERP
 import { ERPDashboardPage } from "@/pages/erp/ERPDashboardPage";
 import { ERPBudgetPage } from "@/pages/erp/ERPBudgetPage";
 import { ERPVendorsPage } from "@/pages/erp/ERPVendorsPage";
 import { ERPAssetsPage } from "@/pages/erp/ERPAssetsPage";
+import { ERPProcurementPage } from "@/pages/erp/ERPProcurementPage";
+import { ERPLifecyclePage } from "@/pages/erp/ERPLifecyclePage";
 
 // Account
 import { MyProfilePage } from "@/pages/account/MyProfilePage";
@@ -136,6 +151,10 @@ export const router = createBrowserRouter([
       { path: "operations/map", element: <OperationsMapPage /> },
       { path: "operations/live-map", element: <LiveMapPage /> },
 
+      // Bookings Hub
+      { path: "bookings/command-center", element: <BookingsCommandCenterPage /> },
+      { path: "bookings/quality", element: <ServiceQualityPage /> },
+
       // Customers
       { path: "customers", element: <CustomersPage /> },
       { path: "customers/:id", element: <CustomerDetailPage /> },
@@ -145,10 +164,16 @@ export const router = createBrowserRouter([
       { path: "providers/queue/:id", element: <ProviderQueueDetailPage /> },
       { path: "providers/registry", element: <MerchantRegistryPage /> },
       { path: "providers/registry/:id", element: <ProviderDetailPage /> },
+      { path: "providers/workforce", element: <WorkforceCommandPage /> },
+      { path: "providers/compliance", element: <ComplianceScoreboardPage /> },
 
-      // Handyman
+      // Staff
       { path: "staff/handyman", element: <HandymanPage /> },
       { path: "staff/handyman/:id", element: <HandymanDetailPage /> },
+      { path: "staff/drivers", element: <DriversPage /> },
+      { path: "staff/drivers/:id", element: <DriverDetailPage /> },
+      { path: "staff/captains", element: <CaptainsPage /> },
+      { path: "staff/captains/:id", element: <CaptainDetailPage /> },
 
       // Property
       { path: "operations/property", element: <PropertyPage /> },
@@ -182,15 +207,19 @@ export const router = createBrowserRouter([
       { path: "operations/parcel-delivery/parcels/:id", element: <ParcelTrackPage /> },
 
       // Finance
+      { path: "financial/treasury", element: <TreasuryCommandPage /> },
       { path: "financial/transactions", element: <TransactionsPage /> },
       { path: "financial/transactions/:id", element: <TransactionDetailPage /> },
       { path: "financial/commissions", element: <CommissionsPage /> },
       { path: "financial/payouts", element: <PayoutsPage /> },
       { path: "financial/reports", element: <ReportsPage /> },
+      { path: "financial/affiliates", element: <AffiliateEnginePage /> },
       { path: "financial/marketers", element: <MarketersPage /> },
       { path: "financial/marketers/:id", element: <MarketerDetailPage /> },
 
       // Support & Content
+      { path: "support/command-center", element: <SupportCommandPage /> },
+      { path: "support/feedback", element: <FeedbackScoreboardPage /> },
       { path: "support/tickets", element: <SupportPage /> },
       { path: "support/tickets/:id", element: <TicketDetailPage /> },
       { path: "support/chat", element: <ChatPage /> },
@@ -200,6 +229,7 @@ export const router = createBrowserRouter([
       { path: "support/translations", element: <TranslationsPage /> },
 
       // System Settings & Administration
+      { path: "system/security", element: <SecurityCommandPage /> },
       { path: "system/settings", element: <SettingsPage /> },
       { path: "system/permissions", element: <PermissionsPage /> },
       { path: "system/audit", element: <AuditPage /> },
@@ -211,12 +241,16 @@ export const router = createBrowserRouter([
       { path: "hrm/departments", element: <HRMDepartmentsPage /> },
       { path: "hrm/leaves", element: <HRMLeavesPage /> },
       { path: "hrm/payroll", element: <HRMPayrollPage /> },
+      { path: "hrm/performance", element: <HRMPerformancePage /> },
+      { path: "hrm/attendance", element: <HRMAttendancePage /> },
 
       // ERP (Enterprise Resource Planning)
       { path: "erp/dashboard", element: <ERPDashboardPage /> },
       { path: "erp/budget", element: <ERPBudgetPage /> },
       { path: "erp/vendors", element: <ERPVendorsPage /> },
       { path: "erp/assets", element: <ERPAssetsPage /> },
+      { path: "erp/procurement", element: <ERPProcurementPage /> },
+      { path: "erp/lifecycle", element: <ERPLifecyclePage /> },
 
       // Account
       { path: "account/profile", element: <MyProfilePage /> },

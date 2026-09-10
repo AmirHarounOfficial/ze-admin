@@ -51,7 +51,7 @@ export function ProviderDetailPage() {
 
       <div className="grid grid-cols-4 gap-4">
         <KPICard title={t("Monthly GMV")}      value="EGP 48,200"      sub={t("This month")}        trend="+11.4%"  trendUp    icon={<DollarSign size={15} />}  accent={C.green}  />
-        <KPICard title={t("Total Orders")}     value={String(m.points)} sub={t("Lifetime orders")}  trend="+8%"     trendUp    icon={<Package size={15} />}     accent={C.blue}   />
+        <KPICard title={t("Total Orders")}     value={(m.points ?? 0).toLocaleString()} sub={t("Lifetime orders")}  trend="+8%"     trendUp    icon={<Package size={15} />}     accent={C.blue}   />
         <KPICard title={t("Platform Rating")}  value={String(m.rating)} sub={t("Customer rating")}  trend="+0.1"    trendUp    icon={<Star size={15} />}        accent={C.orange} />
         <KPICard title={t("Commission Rate")}  value="4%"               sub={t("Standard tier")}    trend="stable"  trendUp    icon={<Calculator size={15} />}  accent={C.purple} />
       </div>

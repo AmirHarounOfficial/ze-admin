@@ -154,7 +154,7 @@ export function DashboardSelector() {
       {isOpen && (
         <div
           className="absolute top-full start-0 mt-2 w-[380px] sm:w-[440px] max-w-[90vw] rounded-2xl border shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150"
-          style={{ background: C.card, borderColor: C.border , zIndex: 1000}}
+          style={{ background: C.card, borderColor: C.border, zIndex: 1000 }}
         >
           {/* Header & Search Bar */}
           <div className="p-3 border-b" style={{ borderColor: C.border }}>

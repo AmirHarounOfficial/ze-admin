@@ -32,9 +32,9 @@ export function MerchantRegistryPage() {
               <tr key={m.id} className="hover:bg-slate-50/60 transition-colors">
                 <Td mono>{m.id}</Td>
                 <Td><div className="flex items-center gap-2"><Avatar name={m.name} size={24} />{m.name}</div></Td>
-                <Td><span className="text-xs" style={{ color: C.textSecondary }}>{m.category}</span></Td>
-                <Td><div className="flex flex-wrap gap-1">{m.modules.map(mod => <ModuleTag key={mod} label={mod} />)}</div></Td>
-                <Td mono>{m.points.toLocaleString()}</Td>
+                <Td><span className="text-xs" style={{ color: C.textSecondary }}>{t(m.category ?? "General")}</span></Td>
+                <Td><div className="flex flex-wrap gap-1">{m.modules?.map(mod => <ModuleTag key={mod} label={mod} />)}</div></Td>
+                <Td mono>{(m.points ?? 0).toLocaleString()}</Td>
                 <Td><StarRating rating={m.rating} /></Td>
                 <Td><StatusBadge status={m.status} /></Td>
                 <Td><span style={{ color: C.textMuted }}>{m.joined}</span></Td>

@@ -4,7 +4,7 @@ import {
   Home, Wrench, Car, UtensilsCrossed, Pizza, Package, Truck, CreditCard, Wallet, Calculator,
   Megaphone, FileBarChart2, Ticket, MessageSquare, Star, FileText, User, Calendar,
   Banknote, Layers, Database, Settings, KeyRound, Plug, ScrollText, Users2,
-  CalendarCheck2, Briefcase, LifeBuoy, Shield, ShieldAlert, BarChart3
+  CalendarCheck2, Briefcase, LifeBuoy, Shield, ShieldAlert, BarChart3, Gauge, Award, Clock
 } from "lucide-react";
 import { Page, NavItem } from "@/types";
 import { PAGE_TITLES, PAGE_URLS } from "@/constants/navigation";
@@ -69,10 +69,17 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
     icon: <CalendarCheck2 size={18} />,
     color: "#DB8C00",
     bgColor: "rgba(219, 140, 0, 0.12)",
-    defaultPage: "restaurant",
-    defaultUrl: "/operations/restaurant",
+    defaultPage: "bookings-command",
+    defaultUrl: "/bookings/command-center",
     badge: 2,
     groups: [
+      {
+        group: "Operations Hub",
+        items: [
+          { label: "Command Center",     icon: <Gauge size={15} />,    page: "bookings-command" },
+          { label: "Quality Scoreboard", icon: <Award size={15} />,    page: "bookings-quality" },
+        ],
+      },
       {
         group: "Hospitality & Bookings",
         items: [
@@ -118,6 +125,8 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
             children: [
               { label: "Verification Queue", icon: <ShieldCheck size={14} />, page: "providers-queue", badge: 3 },
               { label: "Merchant Registry",  icon: <Building2 size={14} />,   page: "providers-registry" },
+              { label: "Workforce Roster",   icon: <Users2 size={14} />,     page: "providers-workforce" },
+              { label: "Compliance Scoreboard", icon: <ShieldCheck size={14} />, page: "providers-compliance" },
             ],
           },
           { label: "Customers Register", icon: <Users size={15} />, page: "customers" },
@@ -154,8 +163,9 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
       {
         group: "Financial Intelligence",
         items: [
-          { label: "Financial Reports",  icon: <FileBarChart2 size={15} />, page: "reports" },
-          { label: "Transaction Ledger", icon: <CreditCard size={15} />,    page: "transactions" },
+          { label: "Treasury Command Hub",   icon: <Wallet size={15} />,        page: "financial-treasury" },
+          { label: "Financial Reports",     icon: <FileBarChart2 size={15} />, page: "reports" },
+          { label: "Transaction Ledger",    icon: <CreditCard size={15} />,    page: "transactions" },
         ],
       },
       {
@@ -168,6 +178,7 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
       {
         group: "Promotions & Affiliates",
         items: [
+          { label: "Affiliate Engine",      icon: <Megaphone size={15} />,  page: "financial-affiliates" },
           { label: "Promoters & Marketers", icon: <Megaphone size={15} />,  page: "marketers" },
         ],
       },
@@ -199,6 +210,13 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
           { label: "Payroll",        icon: <Banknote size={15} />, page: "hrm-payroll" },
         ],
       },
+      {
+        group: "Performance & Attendance",
+        items: [
+          { label: "Performance & OKRs", icon: <Award size={15} />, page: "hrm-performance" },
+          { label: "Attendance & Shifts", icon: <Clock size={15} />, page: "hrm-attendance" },
+        ],
+      },
     ],
   },
   {
@@ -222,8 +240,10 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
       {
         group: "Supply & Inventory",
         items: [
-          { label: "Vendors", icon: <Building2 size={15} />, page: "erp-vendors" },
-          { label: "Assets",  icon: <Database size={15} />,  page: "erp-assets" },
+          { label: "Vendors",           icon: <Building2 size={15} />, page: "erp-vendors" },
+          { label: "Assets",            icon: <Database size={15} />,  page: "erp-assets" },
+          { label: "Procurement & POs", icon: <FileText size={15} />,  page: "erp-procurement" },
+          { label: "Asset Lifecycle",   icon: <Database size={15} />,  page: "erp-lifecycle" },
         ],
       },
     ],
@@ -241,17 +261,19 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
     badge: 7,
     groups: [
       {
-        group: "Help Desk",
+        group: "Help Desk Command & Operations",
         items: [
-          { label: "Support Tickets",   icon: <Ticket size={15} />,        page: "support", badge: 7 },
-          { label: "Unified Chat Logs", icon: <MessageSquare size={15} />, page: "chat" },
+          { label: "Desk Command Center", icon: <Ticket size={15} />,        page: "support-command" },
+          { label: "Feedback & NPS",      icon: <Star size={15} />,          page: "support-feedback" },
+          { label: "Support Tickets",     icon: <Ticket size={15} />,        page: "support", badge: 7 },
+          { label: "Unified Chat Logs",   icon: <MessageSquare size={15} />, page: "chat" },
         ],
       },
       {
         group: "Content & Localization",
         items: [
-          { label: "Reviews & Ratings", icon: <Star size={15} />,     page: "reviews" },
-          { label: "Banners & Offers",  icon: <FileText size={15} />, page: "banners" },
+          { label: "Reviews & Ratings", icon: <Star size={15} />,      page: "reviews" },
+          { label: "Banners & Offers",  icon: <FileText size={15} />,  page: "banners" },
           { label: "Translations Desk", icon: <GlobeIcon size={15} />, page: "translations" },
         ],
       },
@@ -279,9 +301,10 @@ export const SUB_DASHBOARDS: SubDashboardConfig[] = [
       {
         group: "Security & Governance",
         items: [
-          { label: "Audit Logs",       icon: <ScrollText size={15} />, page: "audit" },
-          { label: "My Profile",       icon: <User size={15} />,       page: "my-profile" },
-          { label: "Account Security", icon: <Shield size={15} />,     page: "account-security" },
+          { label: "Security Command", icon: <ShieldAlert size={15} />, page: "system-security" },
+          { label: "Audit Logs",       icon: <ScrollText size={15} />,  page: "audit" },
+          { label: "My Profile",       icon: <User size={15} />,        page: "my-profile" },
+          { label: "Account Security", icon: <Shield size={15} />,      page: "account-security" },
         ],
       },
     ],
@@ -314,6 +337,8 @@ const PAGE_TO_SUB_DASHBOARD: Record<Page, SubDashboardId> = {
 
   "providers-queue": "providers",
   "providers-registry": "providers",
+  "providers-workforce": "providers",
+  "providers-compliance": "providers",
   customers: "providers",
   handyman: "providers",
   drivers: "providers",
@@ -324,19 +349,27 @@ const PAGE_TO_SUB_DASHBOARD: Record<Page, SubDashboardId> = {
   payouts: "finance",
   commissions: "finance",
   marketers: "finance",
+  "financial-treasury": "finance",
+  "financial-affiliates": "finance",
 
   "hrm-employees": "employees",
   "hrm-departments": "employees",
   "hrm-leaves": "employees",
   "hrm-payroll": "employees",
+  "hrm-performance": "employees",
+  "hrm-attendance": "employees",
 
   "erp-dashboard": "erp",
   "erp-budget": "erp",
   "erp-vendors": "erp",
   "erp-assets": "erp",
+  "erp-procurement": "erp",
+  "erp-lifecycle": "erp",
 
   support: "support",
   chat: "support",
+  "support-command": "support",
+  "support-feedback": "support",
   reviews: "support",
   banners: "support",
   translations: "support",
@@ -345,6 +378,7 @@ const PAGE_TO_SUB_DASHBOARD: Record<Page, SubDashboardId> = {
   permissions: "system",
   integrations: "system",
   audit: "system",
+  "system-security": "system",
   "my-profile": "system",
   "account-security": "system",
 };
@@ -360,6 +394,7 @@ export function getSubDashboardForPage(page: Page): SubDashboardConfig {
 
 export function getSubDashboardForPath(pathname: string): SubDashboardConfig {
   // Check exact prefixes
+  if (pathname.startsWith("/bookings")) return getSubDashboardById("bookings");
   if (pathname.startsWith("/financial")) return getSubDashboardById("finance");
   if (pathname.startsWith("/hrm")) return getSubDashboardById("employees");
   if (pathname.startsWith("/erp")) return getSubDashboardById("erp");
